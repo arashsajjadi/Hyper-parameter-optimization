@@ -11,6 +11,6 @@ I took an optimization course with my dear professor, Dr. Bijan Ahmadi ([@kakava
 |   |  Dataset |    Task Type   | Tasks | Compunds |      Category     |
 |---|:--------:|:--------------:|:-----:|:--------:|:-----------------:|
 | 1 |   Bbbp   | Classification |   1   |   2039   |     Physiology    |
-| 2 |   Tox21  | Classification |   12  |   7831   |     Physiology    |
+| 2 |   HIV    | Classification |   1   |   41127  |     Biophysics    |
 | 3 | FreeSolv |   Regression   |   1   |    642   | Pysical Chemistry |
 </center>

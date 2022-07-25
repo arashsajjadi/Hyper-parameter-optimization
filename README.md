@@ -50,3 +50,8 @@ In this section, I would like to put a summary table of the features and labels 
 | FreeSolv |         200        |                   161                   |        642        |        R        |           70 % -20 % -10 %           |
 
 Also, since I’m presenting all three projects in one report, I’ve highlighted all the code for the **Bbbp** dataset with a light red background, the **HIV** dataset with a light green background, and the **FreeSolv** dataset with a light blue background for more straightforward diagnosis.
+
+## Distribution of labels
+
+Examining the distribution of labels is one of the first things we should do when dealing with any data set. I have also plotted this distribution for all three data sets. [^1]
+[^1]: Matplotlib library has been used in most visualizations of this report, either directly or indirectly.

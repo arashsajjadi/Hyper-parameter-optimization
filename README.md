@@ -43,3 +43,10 @@ The data set that I am going to work on during this project is the molecular dat
 
 In this section, I would like to put a summary table of the features and labels of the data sets I am dealing with. It is necessary to explain that some features represent a constant value that I have deleted in all datasets after calling in Python. Therefore, I have specified each record's algebraic dimension of the features vector in this table. It should be mentioned that I have partitioned the data set to the training set, validation, and testing in the same proportion.
 
+|          | Number of features | The algebraic dimension of the features | Number of records | Target variable | Training set-Validation set-Test set |
+|:--------:|:------------------:|:---------------------------------------:|:-----------------:|:---------------:|:------------------------------------:|
+|   Bbbp   |         200        |                   185                   |       2,039       |    { 0 , 1 }    |           70 % -20 % -10 %           |
+|    HIV   |         200        |                   192                   |      41 , 127     |    { 0 , 1 }    |           70 % -20 % -10 %           |
+| FreeSolv |         200        |                   161                   |        642        |        R        |           70 % -20 % -10 %           |
+
+Also, since I’m presenting all three projects in one report, I’ve highlighted all the code for the **Bbbp** dataset with a light red background, the **HIV** dataset with a light green background, and the **FreeSolv** dataset with a light blue background for more straightforward diagnosis.

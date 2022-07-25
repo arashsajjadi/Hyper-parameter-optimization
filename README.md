@@ -55,3 +55,8 @@ Also, since I’m presenting all three projects in one report, I’ve highlighte
 
 Examining the distribution of labels is one of the first things we should do when dealing with any data set. I have also plotted this distribution for all three data sets. [^1]
 [^1]: Matplotlib library has been used in most visualizations of this report, either directly or indirectly.
+
+![1](https://user-images.githubusercontent.com/47760229/180877694-197b5adb-f457-419d-abb6-22494d00175f.png)
+
+
+

@@ -14,3 +14,32 @@ I took an optimization course with my dear professor, Dr. Bijan Ahmadi ([@kakava
 | 2 |   HIV    | Classification |   1   |   41127  |     Biophysics    |
 | 3 | FreeSolv |   Regression   |   1   |    642   | Pysical Chemistry |
 </center>
+
+# hyper-parameter optimization project report
+
+**Arash Sajjadi**
+
+Optimization in data science
+
+Shahid Beheshti University
+
+July 25, 2022
+
+## Abstract
+
+The upcoming project is a hyper-parameter optimization of the neural network, which has been implemented on three datasets of Bbbp, HIV, and FreeSolv. Two datasets describe classification problems, and one dataset that I am working on is regression. Next, I will explain each data set. One of my most essential references during this project will be the ray library article.
+
+## Pre-Introduction
+
+The data set that I am going to work on during this project is the molecular data set. Since my focus in this project is only on optimizing the hyper-parameters of a neural network, I will refrain from additional explanations about the nature of the data and introduce them briefly.
+
+|   | Dataset  | Task Type      | Tasks | Compunds | Category          |
+|---|----------|----------------|-------|----------|-------------------|
+| 1 | Bbbp     | Classification | 1     | $2,039$  | Physiology        |
+| 2 | HIV      | Classification | 1     | $41,127$ | Biophysics        |
+| 3 | FreeSolv | Regression     | 1     | $642$    | Pysical Chemistry |
+
+## Introduction
+
+In this section, I would like to put a summary table of the features and labels of the data sets I am dealing with. It is necessary to explain that some features represent a constant value that I have deleted in all datasets after calling in Python. Therefore, I have specified each record's algebraic dimension of the features vector in this table. It should be mentioned that I have partitioned the data set to the training set, validation, and testing in the same proportion.
+

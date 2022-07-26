@@ -213,7 +213,7 @@ for i in np.arange(0,4):
 \end{lstlisting}
 ```
 <p>
-    <em>Listing 1: import libraries, data reading, train test splitting, adn feature
+    <em>Listing 1: Import libraries, data reading, train test splitting, adn feature
 selection <b>(Bbbp)</b>
 </em>
 </p>
@@ -391,7 +391,7 @@ k_fold_y_train[2]=pd.DataFrame(data=k_fold_y_train[2])
 k_fold_y_train[3]=pd.DataFrame(data=k_fold_y_train[3])
 ```
 <p>
-    <em>Listing 2: import libraries, data reading, train test splitting, feature selection, and deal with missing data <b>(HIV)</b>
+    <em>Listing 2: Import libraries, data reading, train test splitting, feature selection, and deal with missing data <b>(HIV)</b>
 </em>
 </p>
 
@@ -483,7 +483,7 @@ for i in np.arange(0,4):
   k_fold_y_train[i]=pd.DataFrame(data=k_fold_y_train[i])
 ```
 <p>
-    <em>Listing 3: import libraries, data reading, train test splitting, and feature selection <b>(FreeSolv)</b>
+    <em>Listing 3: Import libraries, data reading, train test splitting, and feature selection <b>(FreeSolv)</b>
 </em>
 </p>
 
@@ -552,3 +552,99 @@ I use `ROC_AUC` [^4] score for two classification projects (*Bbbp,HIV*) and the 
 
 [^4]:ROC;Receiver Operating characteristic curve, AUC;Area under the (ROC) Curve
 [^5]:Mean Squared Error
+
+```python
+from sklearn.metrics import roc_auc_score
+
+def compute_score(model, data_loader, device="cpu"):
+    model.eval()
+    metric = roc_auc_score
+    with torch.no_grad():
+        prediction_all= torch.empty(0, device=device)
+        labels_all= torch.empty(0, device=device)
+        for i, (feats, labels) in enumerate(data_loader):
+            feats=feats.to(device)
+            labels=labels.to(device)
+            prediction = model(feats).to(device)
+            prediction = torch.sigmoid(prediction).to(device)
+            prediction_all = torch.cat((prediction_all, prediction), 0)
+            labels_all = torch.cat((labels_all, labels), 0)                
+        try:
+            t = metric(labels_all.int().cpu(), prediction_all.cpu()).item()
+        except ValueError:
+            t = 0
+    return t
+```
+<p>
+    <em>Listing 4: ROC_AUC score <b>(Bbbp)</b>
+</em>
+</p>
+
+
+```python
+from sklearn.metrics import roc_auc_score
+
+def compute_score(model, data_loader, device="cpu"):
+    model.eval()
+    metric = roc_auc_score
+    with torch.no_grad():
+        prediction_all= torch.empty(0, device=device)
+        labels_all= torch.empty(0, device=device)
+        for i, (feats, labels) in enumerate(data_loader):
+            feats=feats.to(device)
+            labels=labels.to(device)
+            prediction = model(feats).to(device)
+            prediction = torch.sigmoid(prediction).to(device)
+            prediction_all = torch.cat((prediction_all, prediction), 0)
+            labels_all = torch.cat((labels_all, labels), 0)                
+        try:
+            t = metric(labels_all.int().cpu(), prediction_all.cpu()).item()
+        except ValueError:
+            t = 0
+    return t
+```
+<p>
+    <em>Listing 5: ROC_AUC score <b>(HIV)</b>
+</em>
+</p>
+
+
+```python
+from sklearn.metrics import mean_squared_error
+
+def compute_loss(model, data_loader, device="cpu"):
+    model.eval()
+    metric = mean_squared_error
+    with torch.no_grad():
+        prediction_all= torch.empty(0, device=device)
+        labels_all= torch.empty(0, device=device)
+        for i, (feats, labels) in enumerate(data_loader):
+            feats=feats.to(device)
+            labels=labels.to(device)
+            prediction = model(feats).to(device)
+            prediction_all = torch.cat((prediction_all, prediction), 0)
+            labels_all = torch.cat((labels_all, labels), 0)               
+            t = metric(labels_all.int().cpu()
+    return t
+```
+<p>
+    <em>Listing 6: MSE loss <b>(FreeSolv)</b>
+</em>
+</p>
+
+## Neural networks and introduction of hyper-parameters
+
+In the optimization process of hyper-parameters, I do not decide to generally consider the number of nodes of each hidden layer as a hyper-parameter. Since I intuitively feel that the number of nodes should gradually decrease, I define the general shape of the neural network and add some nodes to each hidden layer at each step. These numbers can be defined as hyper-parameters. The figure below can give me a general idea of what I am looking for.
+
+![myImage (2)](https://user-images.githubusercontent.com/47760229/180961670-d508eec9-8719-4c4b-8364-eec4d1cb30f3.png)
+<p>
+    <em>Figure 8: The general structure of the neural networks of this project
+selection <b>(Bbbp)</b>
+</em>
+</p>
+
+### Defining data ladders
+
+At first, according to what was said in the previous part and concerning figure 4, I will define different data loaders for different goals. Note that I separated the data during the last section completely. Here these data loaders help me to use them in the PyTorch environment.
+
+

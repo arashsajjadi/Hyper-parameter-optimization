@@ -35,9 +35,9 @@ The data set that I am going to work on during this project is the molecular dat
 
 |   | Dataset  | Task Type      | Tasks | Compunds | Category          |
 |---|----------|----------------|-------|----------|-------------------|
-| 1 | Bbbp     | Classification | 1     | $2,039$  | Physiology        |
-| 2 | HIV      | Classification | 1     | $41,127$ | Biophysics        |
-| 3 | FreeSolv | Regression     | 1     | $642$    | Pysical Chemistry |
+| 1 | Bbbp     | Classification | 1     | 2,039    | Physiology        |
+| 2 | HIV      | Classification | 1     | 41,127   | Biophysics        |
+| 3 | FreeSolv | Regression     | 1     | 642      | Pysical Chemistry |
 
 ## Introduction
 

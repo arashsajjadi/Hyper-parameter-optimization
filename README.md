@@ -495,9 +495,60 @@ The codes related to this section are also available in the previous listings. I
 
 <p float="left">
   <img src="https://user-images.githubusercontent.com/47760229/180954198-df487eeb-c5ed-46f7-ba18-7c6b23709239.png" width="250" />
-  <img src="https://user-images.githubusercontent.com/47760229/180954230-4cc009ee-34d5-43cc-a824-3637808511e6.png" width="250" /> 
+  <img src="https://user-images.githubusercontent.com/47760229/180954230-4cc009ee-34d5-43cc-a824-3637808511e6.png" width="300" /> 
 </p>
 <p>
     <em>Figure 5: featurewiz output on Bbbp dataset
 </em>
 </p>
+
+Out of <b>185</b> features, 20 features were removed due to being highly correlated with other features. Therefore, the remaining 165 features were processed by recursive feature selection XGBoost, and finally, <b>71</b> features were selected as important and influencing features on the target variable in the Bbbp dataset. (Fig.5)
+
+The processing of this feature selection took 56 seconds on a Google colab server with two 2.30GHz core processors.
+
+
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/47760229/180956311-b88d6608-7972-4470-8eb1-208b73eec493.png" width="250" />
+  <img src="https://user-images.githubusercontent.com/47760229/180956332-a0ff2cf0-1a51-4392-b5f7-39c8a3a8993b.png" width="300" /> 
+</p>
+<p>
+    <em>Figure 6: featurewiz output on HIV dataset
+</em>
+</p>
+
+Out of **192** features, 51 features were removed due to being highly correlated with other features. Therefore, the remaining 141 features were processed by recursive feature selection XGBoost, and finally, **65** features were selected as important and influencing features on the target variable in the HIV dataset. (Fig.6)
+
+The processing of this feature selection took 540 seconds on a private Ubuntu server with 24- 3.30GHz core processors.
+
+<p float="left">
+  <img src="https://user-images.githubusercontent.com/47760229/180956635-adefd0c9-9256-43ec-82d8-4029ed83091a.png" width="250" />
+  <img src="https://user-images.githubusercontent.com/47760229/180956653-62d7054f-d286-480b-838e-847d5f33f9a7.png" width="300" /> 
+</p>
+<p>
+    <em>Figure 7: featurewiz output on FreeSolv dataset
+</em>
+</p>
+
+Out of **161** features, 17 features were removed due to being highly correlated with other features. Therefore, the remaining 144 features were processed by recursive feature selection XGBoost, and finally, **65** features were selected as important and influencing features on the target variable in the FreeSolv dataset. (Fig.7)
+
+The processing of this feature selection took 20 seconds on a Google colab server with two 2.30GHz core processors.
+
+-----
+**Note**
+ 
+It should be noted that the feature selection section is processed **only based on the information in the training set**.
+
+-----
+
+### Missing values
+
+Among these three data sets, the only one data set that has missing values. It is the HIV data set. I used knn imputer to deal with this problem. This method helps me use a predictive system to guess missing values. In fact, instead of using indicators such as median and mean, we estimate the amount of missing data more intelligently according to k close data.
+
+Due to the large amount of data, this process was a bit time-consuming. But the result was ultimately satisfactory. Note that this step is also applied to the training, validation, and test sets based on the training set.
+
+### Accuracy and error measurement criteria
+
+I use `ROC_AUC` [^4] score for two classification projects (*Bbbp,HIV*) and the `MSE` [^5] loss meter for the regression project.
+
+[^4]:ROC;Receiver Operating characteristic curve, AUC;Area under the (ROC) Curve
+[^5]:Mean Squared Error

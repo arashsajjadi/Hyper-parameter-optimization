@@ -2279,6 +2279,228 @@ Best trial test set loss:1.190654159875324
 
 Now we have the optimal hyper-parameters. But have only the initial weights of the neural network caused acceptable results? To answer this question, we again train the neural network from the beginning and check the results on all three datasets.
 
+```python
+def final_traing(config,max_iter=14):
+    net = NeuralNetwork(np.shape(feature_selection[0])[0],config["l1"],config["l2"],config["l3"],config)
+
+
+    device = "cpu"
+    if torch.cuda.is_available():
+        device = "cuda:0"
+        if torch.cuda.device_count() > 1:
+            net = nn.DataParallel(net)
+    net.to(device)
+    
+    #Define my loss function and optimizer
+    criterion=nn.BCELoss()
+    optimizer=torch.optim.Adam(net.parameters(), lr=config["lr"])
+
+    for epoch in range(max_iter):
+      running_loss = 0.0
+      epoch_steps = 0
+      for i, data in enumerate(trainloader(config), 0):
+        # get the inputs; data is a list of [inputs, labels]
+        inputs, labels = data
+        inputs, labels = inputs.to(device), labels.to(device)
+        # zero the parameter gradients
+        optimizer.zero_grad()
+        # forward + backward + optimize
+        outputs = net(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        # print statistics
+        running_loss += loss.item()
+        epoch_steps += 1
+        if i % 2000 == 1999:  # print every 2000 mini-batches
+          print("[%d, %5d] loss: %.3f" % (epoch + 1, i + 1,running_loss / epoch_steps))
+          running_loss = 0.0
+
+        # Validation score
+    return net
+
+neurlnet=final_traing(configuration,max_iter=14)
+with torch.no_grad():
+    y_predicted=neurlnet(X_test_)
+    y_predicted_cls=y_predicted.round()
+    acc= y_predicted_cls.eq(y_test_).sum()/float(y_test_.shape[0])
+
+    #print(f'accuracy={acc:.4f}')
+    a=confmat( y_predicted_cls.int(),y_test_.int()) 
+    print(f'accuracy={acc:.19f}     balanced_accuracy_score={balanced_accuracy_score(y_predicted_cls.int(),y_test_.int()):.19f}     ROC_AUC={compute_score(neurlnet, testloader(configuration), device="cpu")   :.19f}')
+    print(a)
+```
+<p>
+    <em>Listing 28: Retraining the neural network <b>(Bbbp)</b>
+</em>
+</p>
+
+```
+accuracy=0.8970588235294118
+balanced_accuracy_score=0.8622641509433963
+ROC_AUC=0.92352994855429571248
+tensor([[ 36  12],
+        [  9 147]])
+```
+<p>
+    <em>Listing 29: Final results <b>(Bbbp)</b>
+</em>
+</p>
+
+
+```python
+def final_traing(config,max_iter=14):
+    net = NeuralNetwork(np.shape(feature_selection[0])[0],config["l1"],config["l2"],config["l3"],config)
+
+
+    device = "cpu"
+    if torch.cuda.is_available():
+        device = "cuda:0"
+        if torch.cuda.device_count() > 1:
+            net = nn.DataParallel(net)
+    net.to(device)
+    
+    #Define my loss function and optimizer
+    criterion=nn.BCELoss()
+    optimizer=torch.optim.Adam(net.parameters(), lr=config["lr"])
+
+    for epoch in range(max_iter):
+      running_loss = 0.0
+      epoch_steps = 0
+      for i, data in enumerate(trainloader(config), 0):
+        # get the inputs; data is a list of [inputs, labels]
+        inputs, labels = data
+        inputs, labels = inputs.to(device), labels.to(device)
+        # zero the parameter gradients
+        optimizer.zero_grad()
+        # forward + backward + optimize
+        outputs = net(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        # print statistics
+        running_loss += loss.item()
+        epoch_steps += 1
+        if i % 2000 == 1999:  # print every 2000 mini-batches
+          print("[%d, %5d] loss: %.3f" % (epoch + 1, i + 1,running_loss / epoch_steps))
+          running_loss = 0.0
+
+        # Validation score
+    return net
+
+neurlnet=final_traing(configuration,max_iter=9)
+with torch.no_grad():
+    y_predicted=neurlnet(X_test_)
+    y_predicted_cls=y_predicted.round()
+    acc= y_predicted_cls.eq(y_test_).sum()/float(y_test_.shape[0])
+
+    #print(f'accuracy={acc:.4f}')
+    a=confmat( y_predicted_cls.int(),y_test_.int()) 
+    print(f'accuracy={acc:.19f}     balanced_accuracy_score={balanced_accuracy_score(y_predicted_cls.int(),y_test_.int()):.19f}     ROC_AUC={compute_score(neurlnet, testloader(configuration), device="cpu")   :.19f}')
+    print(a)
+```
+<p>
+    <em>Listing 30: Retraining the neural network <b>(HIV)</b>
+</em>
+</p>
+
+
+```
+accuracy=0.9720398735716023
+balanced_accuracy_score=0.8807050684974516
+ROC_AUC=0.83159499309512508965
+tensor([[3961,   10],
+        [ 105,   37]])
+```
+<p>
+    <em>Listing 31: Final results <b>(HIV)</b>
+</em>
+</p>
+
+```python
+def final_traing(config,max_iter=14):
+    net = NeuralNetwork(np.shape(feature_selection[0])[0],config["l1"],config["l2"],config["l3"],config)
+
+
+    device = "cpu"
+    if torch.cuda.is_available():
+        device = "cuda:0"
+        if torch.cuda.device_count() > 1:
+            net = nn.DataParallel(net)
+    net.to(device)
+    
+    #Define my loss function and optimizer
+    criterion=nn.MSELoss()
+    optimizer=torch.optim.Adam(net.parameters(), lr=config["lr"])
+
+    for epoch in range(max_iter):
+      running_loss = 0.0
+      epoch_steps = 0
+      for i, data in enumerate(trainloader(config), 0):
+        # get the inputs; data is a list of [inputs, labels]
+        inputs, labels = data
+        inputs, labels = inputs.to(device), labels.to(device)
+        # zero the parameter gradients
+        optimizer.zero_grad()
+        # forward + backward + optimize
+        outputs = net(inputs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        # print statistics
+        running_loss += loss.item()
+        epoch_steps += 1
+        if i % 2000 == 1999:  # print every 2000 mini-batches
+          print("[%d, %5d] loss: %.3f" % (epoch + 1, i + 1,running_loss / epoch_steps))
+          running_loss = 0.0
+    return net
+    
+neurlnet=final_traing(configuration,max_iter=30)
+loss=compute_loss(neurlnet, testloader(config), device="cpu")
+print(f'loss={loss:.10f}')
+```
+<p>
+    <em>Listing 32: Retraining the neural network <b>(FreeSolv)</b>
+</em>
+</p>
+
+```
+loss=1.24510621941294373
+```
+<p>
+    <em>Listing 33: Final results <b>(HIV)</b>
+</em>
+</p>
+
+## Conclusion
+
+Among these three datasets, I have examined the results of the Bbbp dataset more than the other datasets. Therefore, I thought it would be good to put the results of working with this data in the form of a table.
+
+
+
+-----
+table
+-----
+
+In addition, referring to the report I wrote earlier in the applied machine learning course about the HIV dataset is not harmful. My meter in that project was balanced accuracy. In the following table, you can have a better comparison of the final accuracy of these two data sets.[[HIV_Project_report](https://github.com/arashsajjadi/Applied-Machine-Learning-Course-Projects/blob/main/Hiv_project_report.pdf)]
+
+|   | Best algorithm | Dimension reduction | Search Algorithm | Balanced accuracy | Sensitivity | Specificity | Accuracy |
+|:-:|:--------------:|:-------------------:|:----------------:|:-----------------:|:-----------:|:-----------:|----------|
+| 1 |       KNN      |         PCA         |   Gridsearchcv   |       0.7326      |    0.4861   |    0.9791   | 0.96131  |
+| 2 | Neural Network |      featurewiz     |      Optuna      |       0.8807      |    0.7872   |    0.9741   | 0.97203  |
+
+I would have loved to partition the data set like the article FunQG: Molecular Representation Learning Via Quotient Graphs using Scaffold Split. Still, the little time I had on this project prevented me. I hope to have this opportunity in the future. [[FunQG: Molecular Representation Learning Via Quotient Graphs](https://arxiv.org/abs/2207.08597)]
+
+## Acknowledgements
+
+I would like to express my special gratitude to my dear professors, **Dr.Zahra Taheri** and **Dr.Bijan Ahmadi**. Both of these dignitaries gave me the golden opportunity to do this wonderful project on the topic of hyper-parameter optimization, which also helped me do a lot of research that has led to learning fascinating and valuable information in this field.
+
+It is also appropriate to mention **Professor Andrew Ng**, who introduced me to the structure of neural networks through his online training courses. In addition, let me say that I learned to work with the PyTorch library through Mr. *Patrick Loeber*'s YouTube channel.
+
+I would like to mention that I consulted with my good friends *Dr. Behrad Taghi Beiglo* and *Kian Adib* in this project. I should also thank my good teammate, Mr. *Mahmoud Hashempour*.
+
+
+
 
 
 

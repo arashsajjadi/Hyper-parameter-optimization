@@ -297,6 +297,6 @@ k_fold_y_train[3]=pd.DataFrame(data=k_fold_y_train[3])
 </code></pre>
 <p>
     <em>Listing 1: import libraries, data reading, train test splitting, adn feature
-selection (`Bbbp`)
+selection <b>(Bbbp)</b>
 </em>
 </p>

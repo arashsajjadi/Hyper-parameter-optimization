@@ -23,7 +23,7 @@ Optimization in data science
 
 Shahid Beheshti University
 
-July 25, 2022
+July 26, 2022
 
 ## Abstract
 

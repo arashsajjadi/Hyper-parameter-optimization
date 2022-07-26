@@ -2478,9 +2478,17 @@ Among these three datasets, I have examined the results of the Bbbp dataset more
 
 
 
------
-table
------
+|   |                                      | ROC_AUC | SearchAlgorithm |                            Changes comparedto the previousversion                            | Optimizer |
+|:-:|:------------------------------------:|:-------:|:---------------:|:--------------------------------------------------------------------------------------------:|:---------:|
+| 1 |        Primary neural network        |  0.8920 |        -        |                                               -                                              |    SGD    |
+| 2 | hyper-parameter tuning with ray tune |  0.9066 |  Random search  | Using Ray tune                                                                               |    SGD    |
+| 3 | hyper-parameter tuning with ray tune |  0.9110 |  Random search  | Introducing the activation functions as hyper-parameters                                     |    SGD    |
+| 4 | hyper-parameter tuning with ray tune |  0.9155 |  Random search  | Change the optimizer                                                                         |    Adam   |
+| 5 | hyper-parameter tuning with ray tune |  0.9222 |      Optuna     | Change the search algorithm                                                                  |    Adam   |
+| 6 | hyper-parameter tuning with ray tune |  0.9054 |      Optuna     | add semi CV-Changing the score criterion                                                     |    Adam   |
+| 7 | hyper-parameter tuning with ray tune | 0.91052 |      Optuna     | Changing the max possible iterations                                                         |    Adam   |
+| 8 | hyper-parameter tuning with ray tune |  0.9074 |      Optuna     | Changing the score criterion                                                                 |    Adam   |
+| 9 | hyper-parameter tuning with ray tune |  0.9235 |      Optuna     | Limit thesearch space & New neural network model training withthe optimized hyper-parameters |    Adam   |
 
 In addition, referring to the report I wrote earlier in the applied machine learning course about the HIV dataset is not harmful. My meter in that project was balanced accuracy. In the following table, you can have a better comparison of the final accuracy of these two data sets.[[HIV_Project_report](https://github.com/arashsajjadi/Applied-Machine-Learning-Course-Projects/blob/main/Hiv_project_report.pdf)]
 

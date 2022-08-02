@@ -1939,6 +1939,7 @@ config = {
 </em>
 </p>
 
+```python
 config = {
       "l1": tune.choice([2**6,2**7,2**8]),
       "l2": tune.choice([2**6,2**7,2**8]),
@@ -1957,6 +1958,7 @@ config = {
 </em>
 </p>
 
+```python
 config = {
       "l1": tune.choice([2**6,2**7,2**8]),
       "l2": tune.choice([2**6,2**7,2**8]),

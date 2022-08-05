@@ -6,6 +6,7 @@ I took an optimization course with my dear professor, Dr. Bijan Ahmadi ([@kakava
 
 *The data set that I am going to work on during this project is the molecular data set. Since my focus in this project is only on optimizing the hyper-parameters of a neural network, I will refrain from additional explanations about the nature of the data and introduce them briefly.*
 
+
 <center> 
   
 |   |  Dataset |    Task Type   | Tasks | Compunds |      Category     |

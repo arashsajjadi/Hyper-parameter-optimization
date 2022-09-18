@@ -16,6 +16,12 @@ I took an optimization course with my dear professor, Dr. Bijan Ahmadi ([@kakava
 | 3 | FreeSolv |   Regression   |   1   |    642   | Pysical Chemistry |
 </center>
 
+## Report
+
+The report of this project can be downloaded from [this link](https://github.com/arashsajjadi/Hyper-parameter-optimization/blob/main/hyperparameter_optimization.pdf).
+
+You can also read the report from the following page.
+
 # hyper-parameter optimization project report
 
 **Arash Sajjadi**
